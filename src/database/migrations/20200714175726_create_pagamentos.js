@@ -6,7 +6,7 @@ exports.up = function(knex) {
       table.string('titulo').notNullable();
       table.string('descricao').notNullable();
       table.float('valor_total').unsigned().notNullable();
-      table.integer('valor_restante').unsigned().notNullable();
+      table.float('valor_restante').unsigned().notNullable();
       table.integer('numero_parcelas').unsigned().notNullable();
       table.integer('dia_pagamento').unsigned().notNullable();
       table.date('comeca_pagar').unsigned().notNullable();
