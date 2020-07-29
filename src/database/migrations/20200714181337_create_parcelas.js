@@ -3,8 +3,8 @@ exports.up = function(knex) {
   return knex.schema.createTable('parcelas', function(table){
       table.increments().primary();
       table.boolean('status').notNullable();
-      table.float('valor_parcela', [0], [0]).notNullable();
-      table.integer('numero_parcela').unsigned().notNullable();
+      table.float('valor_parcela').notNullable();
+      table.string('numero_parcela').unsigned().notNullable();
       table.date('data_parcela');
       table.integer('pagamento_id').notNullable();
 
