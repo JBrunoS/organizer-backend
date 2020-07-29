@@ -1,5 +1,4 @@
 const connection = require('../database/connection');
-const { index } = require('../../../../grade_escolar/backend/src/controllers/escolaController');
 
 
 module.exports = {

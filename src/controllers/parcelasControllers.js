@@ -1,5 +1,5 @@
 const connection = require('../database/connection');
-const { removeAllListeners } = require('../database/connection');
+
 
 module.exports = {
 
