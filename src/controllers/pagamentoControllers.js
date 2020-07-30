@@ -53,6 +53,8 @@ module.exports = {
             let diferenca = parseFloat((valor_total - (parcela * numero_parcelas)).toFixed(2));
 
             const array = [];
+            
+            const pagamento_id = parseInt(pagamento);
 
             let dia = parseInt(String(comeca_pagar).substring(0, 2));
             let mes = parseInt(String(comeca_pagar).substring(3, 5));
@@ -85,11 +87,11 @@ module.exports = {
                     valor_parcela: parcela,
                     numero_parcela: i + 1,
                     data_parcela: array[i],
-                    pagamento_id: pagamento
+                    pagamento_id
                 })
 
             }    
-            return response.json('Pronto, tá inserido o pagamento')
+            return response.json(`Pronto, tá inserido o pagamento ${pagamento_id}`)
         }
         return response.json({error: 'Não foi possível'});
         
