@@ -87,7 +87,7 @@ module.exports = {
                     valor_parcela: parcela,
                     numero_parcela: i + 1,
                     data_parcela: array[i],
-                    pagamento_id: pagamento_id
+                    pagamento_id
                 })
 
             }    
