@@ -9,7 +9,7 @@ exports.up = function(knex) {
       table.float('valor_restante').unsigned().notNullable();
       table.integer('numero_parcelas').unsigned().notNullable();
       table.integer('dia_pagamento').unsigned().notNullable();
-      table.date('comeca_pagar').unsigned().notNullable();
+      table.string('comeca_pagar').unsigned().notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.boolean('status').notNullable();
       table.integer('user_id').notNullable();

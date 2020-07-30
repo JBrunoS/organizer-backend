@@ -5,8 +5,9 @@ exports.up = function(knex) {
       table.boolean('status').notNullable();
       table.float('valor_parcela').notNullable();
       table.string('numero_parcela').unsigned().notNullable();
-      table.date('data_parcela');
+      table.string('data_parcela');
       table.integer('pagamento_id').notNullable();
+      table.timestamp('created_at').defaultTo(knex.fn.now());
 
       table.foreign('pagamento_id').references('id').inTable('pagamentos')
   })
