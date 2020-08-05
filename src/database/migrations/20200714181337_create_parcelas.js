@@ -6,7 +6,7 @@ exports.up = function(knex) {
       table.float('valor_parcela').notNullable();
       table.string('numero_parcela').unsigned().notNullable();
       table.string('data_parcela');
-      table.integer('pagamento_id');
+      table.string('pagamento_id');
       table.timestamp('created_at').defaultTo(knex.fn.now());
 
       table.foreign('pagamento_id').references('id').inTable('pagamentos')

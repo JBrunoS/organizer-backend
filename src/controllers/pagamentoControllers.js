@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const connection = require('../database/connection')
 
 module.exports = {
@@ -33,9 +35,12 @@ module.exports = {
             comeca_pagar} = request.body;
         
         const user_id = request.headers.authorization;
+        
+        const id = crypto.randomBytes(4).toString('HEX');
 
         const pagamento = await connection('pagamentos')
         .insert({
+            id,
             categoria,
             titulo, 
             descricao,
@@ -53,47 +58,43 @@ module.exports = {
             let diferenca = parseFloat((valor_total - (parcela * numero_parcelas)).toFixed(2));
 
             const array = [];
-            
-            console.log(pagamento);
 
-            // const pagamento_id = parseInt(pagamento);
+            let dia = parseInt(String(comeca_pagar).substring(0, 2));
+            let mes = parseInt(String(comeca_pagar).substring(3, 5));
+            let ano = parseInt( String(comeca_pagar).substring(6, 10));
 
-            // let dia = parseInt(String(comeca_pagar).substring(0, 2));
-            // let mes = parseInt(String(comeca_pagar).substring(3, 5));
-            // let ano = parseInt( String(comeca_pagar).substring(6, 10));
+            for (let i = 0; i < numero_parcelas; i++) {
+                if(i > 0){
+                    mes = mes + 1;
+                }
 
-            // for (let i = 0; i < numero_parcelas; i++) {
-            //     if(i > 0){
-            //         mes = mes + 1;
-            //     }
+                if (mes > 12) {
+                    mes = 0;
+                    mes = mes + 1;
+                    ano = ano + 1;
+                }
 
-            //     if (mes > 12) {
-            //         mes = 0;
-            //         mes = mes + 1;
-            //         ano = ano + 1;
-            //     }
+                let date = String(dia) + '/' + String(mes) + '/' + String(ano);
+                array.push(date);
+            }
 
-            //     let date = String(dia) + '/' + String(mes) + '/' + String(ano);
-            //     array.push(date);
-            // }
-
-            // for (let i = 0; i < array.length; i++) {
+            for (let i = 0; i < array.length; i++) {
                 
-            //     if(i == numero_parcelas - 1){
-            //         parcela = parcela + diferenca;
-            //     }
+                if(i == numero_parcelas - 1){
+                    parcela = parcela + diferenca;
+                }
 
-            //     await connection('parcelas')
-            //     .insert({
-            //         status: false,
-            //         valor_parcela: parcela,
-            //         numero_parcela: i + 1,
-            //         data_parcela: array[i],
-            //         pagamento_id
-            //     })
+                await connection('parcelas')
+                .insert({
+                    status: false,
+                    valor_parcela: parcela,
+                    numero_parcela: i + 1,
+                    data_parcela: array[i],
+                    pagamento_id: id 
+                })
 
-            // }    
-            // return response.json(`Pronto, tá inserido o pagamento ${pagamento_id}`)
+            }    
+            return response.json(`Pronto, tá inserido o pagamento ${pagamento_id}`)
         }
         return response.json({error: 'Não foi possível'});
         
