@@ -54,44 +54,46 @@ module.exports = {
 
             const array = [];
             
-            const pagamento_id = parseInt(pagamento);
+            console.log(pagamento);
 
-            let dia = parseInt(String(comeca_pagar).substring(0, 2));
-            let mes = parseInt(String(comeca_pagar).substring(3, 5));
-            let ano = parseInt( String(comeca_pagar).substring(6, 10));
+            // const pagamento_id = parseInt(pagamento);
 
-            for (let i = 0; i < numero_parcelas; i++) {
-                if(i > 0){
-                    mes = mes + 1;
-                }
+            // let dia = parseInt(String(comeca_pagar).substring(0, 2));
+            // let mes = parseInt(String(comeca_pagar).substring(3, 5));
+            // let ano = parseInt( String(comeca_pagar).substring(6, 10));
 
-                if (mes > 12) {
-                    mes = 0;
-                    mes = mes + 1;
-                    ano = ano + 1;
-                }
+            // for (let i = 0; i < numero_parcelas; i++) {
+            //     if(i > 0){
+            //         mes = mes + 1;
+            //     }
 
-                let date = String(dia) + '/' + String(mes) + '/' + String(ano);
-                array.push(date);
-            }
+            //     if (mes > 12) {
+            //         mes = 0;
+            //         mes = mes + 1;
+            //         ano = ano + 1;
+            //     }
 
-            for (let i = 0; i < array.length; i++) {
+            //     let date = String(dia) + '/' + String(mes) + '/' + String(ano);
+            //     array.push(date);
+            // }
+
+            // for (let i = 0; i < array.length; i++) {
                 
-                if(i == numero_parcelas - 1){
-                    parcela = parcela + diferenca;
-                }
+            //     if(i == numero_parcelas - 1){
+            //         parcela = parcela + diferenca;
+            //     }
 
-                await connection('parcelas')
-                .insert({
-                    status: false,
-                    valor_parcela: parcela,
-                    numero_parcela: i + 1,
-                    data_parcela: array[i],
-                    pagamento_id
-                })
+            //     await connection('parcelas')
+            //     .insert({
+            //         status: false,
+            //         valor_parcela: parcela,
+            //         numero_parcela: i + 1,
+            //         data_parcela: array[i],
+            //         pagamento_id
+            //     })
 
-            }    
-            return response.json(`Pronto, tá inserido o pagamento ${pagamento_id}`)
+            // }    
+            // return response.json(`Pronto, tá inserido o pagamento ${pagamento_id}`)
         }
         return response.json({error: 'Não foi possível'});
         
