@@ -9,7 +9,8 @@ module.exports = {
         const parcelas = await connection('parcelas')
         .innerJoin('pagamentos', 'pagamentos.id', 'parcelas.pagamento_id')
         .where({'pagamento_id': id})
-        .select('parcelas.*', 'pagamentos.valor_total', 'pagamentos.valor_restante', 'pagamentos.titulo', 'pagamentos.descricao', 'pagamentos.numero_parcelas', 'pagamentos.categoria');
+        .select('parcelas.*', 'pagamentos.valor_total', 'pagamentos.valor_restante', 'pagamentos.titulo', 'pagamentos.descricao', 'pagamentos.numero_parcelas', 'pagamentos.categoria')
+        .orderBy('parcelas.id');
 
         return response.json(parcelas)
 
