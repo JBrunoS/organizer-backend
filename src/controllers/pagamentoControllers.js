@@ -19,6 +19,7 @@ module.exports = {
         const pagamentos = await connection('pagamentos')
         .where({'user_id': user_id, 'status': true})
         .select('*')
+        .orderBy('categoria', 'desc')
 
         return response.json(pagamentos);
     },
