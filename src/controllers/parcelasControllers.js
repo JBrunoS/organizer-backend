@@ -16,6 +16,18 @@ module.exports = {
 
     },
 
+    async parcelas(request, response){
+        const { id } = request.params;
+
+        const parcelas = await connection('parcelas')
+        .innerJoin('pagamentos', 'pagamentos.id', 'parcelas.pagamento_id')
+        .where({'pagamentos.user_id': id})
+        .select('parcelas.*', 'pagamentos.valor_total', 'pagamentos.valor_restante', 'pagamentos.titulo', 'pagamentos.descricao', 'pagamentos.numero_parcelas', 'pagamentos.categoria')
+        .orderBy('parcelas.id');
+
+        return response.json(parcelas)
+    },
+
     async adicionaPagamento(request, response){
         const pagamento_id = request.headers.authorization;
         const {status, valor_parcela} = request.body;

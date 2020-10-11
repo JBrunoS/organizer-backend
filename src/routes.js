@@ -22,6 +22,7 @@ routes.get('/pagamentos/gastostotais/:id', pagamentoControllers.totalSaidas)
 routes.get('/pagamentos/receitastotais/:id', pagamentoControllers.totalEntradas)
 
 routes.get('/parcelas/pagamento/:id', parcelasControllers.index);
+routes.get('/parcelas/parcelas/:id', parcelasControllers.parcelas);
 routes.put('/parcelas/:id', parcelasControllers.adicionaPagamento);
 routes.get('/parcelas/gastos/:id', parcelasControllers.sumContasPagar);
 routes.get('/parcelas/receitas/:id', parcelasControllers.sumContasReceber);
