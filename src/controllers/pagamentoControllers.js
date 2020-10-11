@@ -74,7 +74,7 @@ module.exports = {
                     ano = ano + 1;
                 }
 
-                let date = String(dia) + '/' + String(mes) + '/' + String(ano);
+                let date = String(dia) + '/' + mes < 10 ? String('0' + mes) : String(mes) + '/' + String(ano);
                 array.push(date);
             }
 
