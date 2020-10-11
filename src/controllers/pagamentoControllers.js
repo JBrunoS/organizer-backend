@@ -59,7 +59,7 @@ module.exports = {
 
             const array = [];
 
-            let dia = parseInt(String(comeca_pagar).substring(0, 2));
+            let dia = String(comeca_pagar).substring(0, 2);
             let mes = parseInt(String(comeca_pagar).substring(3, 5));
             let ano = parseInt( String(comeca_pagar).substring(6, 10));
 
