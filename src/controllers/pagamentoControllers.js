@@ -74,11 +74,12 @@ module.exports = {
                     ano = ano + 1;
                 }
 
-                let date = String(dia) + '/' + mes < 10 ? String('0' + mes) : String(mes) + '/' + String(ano);
+                let month = mes < 10 ? '0'+mes : mes;
+                console.log(month);
+
+                let date = String(dia) + '/' + String(month) + '/' + String(ano);
                 array.push(date);
             }
-
-            console.log(array);
 
             for (let i = 0; i < array.length; i++) {
                 
