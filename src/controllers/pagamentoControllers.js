@@ -78,6 +78,8 @@ module.exports = {
                 array.push(date);
             }
 
+            console.log(array);
+
             for (let i = 0; i < array.length; i++) {
                 
                 if(i == numero_parcelas - 1){
